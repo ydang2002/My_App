@@ -25,7 +25,7 @@ async function getAllStudents(req, res) {
     }
 }
 async function getStudentById(req, res) {
-    debugger
+    // debugger
     let studentId = req.params.id
     try {
         const student = await studentRepository.getStudentById(studentId)
@@ -49,7 +49,7 @@ async function updateStudent(req, res) {
         phoneNumber,
         address
     } = req.body
-    debugger
+    // debugger
     try {
         const student = await studentRepository.updateStudent(req.body)
         res.status(HttpStatusCode.OK).json({

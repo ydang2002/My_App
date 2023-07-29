@@ -51,7 +51,7 @@ const insertStudent = async ({
 }) => {
     // console.log('insert student')
     try {
-        debugger
+        // debugger
         const student = await Student.create({
             name,
             email,
@@ -66,9 +66,9 @@ const insertStudent = async ({
             //error from validations
             throw new Exception('Input error', exception.errors)
         }
-        debugger
+        // debugger
     }
-    debugger
+    // debugger
 }
 
 const updateStudent = async ({
@@ -81,7 +81,7 @@ const updateStudent = async ({
     address
 }) => {
     const student = await Student.findById(id)
-    debugger
+    // debugger
     student.name = name ?? student.name
     student.email = email ?? student.email
     student.languages = languages ?? student.languages
@@ -93,22 +93,22 @@ const updateStudent = async ({
 }
 
 async function generateFakerStudents() {
-    [...Array(100).keys()].forEach(async (index) => {
+    let fakeStudents = []
+    for(let i = 0; i < 100; i++){
         let fakeStudent = {
             name: `${faker.name.fullName()}-fake`,
             email: faker.internet.email(),
             language: [
-                faker.helpers.arrayElement(['English', 'Vietnamese']),
-                faker.helpers.arrayElement(['Japanese', 'Korean'])
+                faker.helpers.arrayElement(['English', 'Vietnamese', 'French']),
+                faker.helpers.arrayElement(['Japanese', 'Korean', 'Chinese'])
             ],
             gender: faker.helpers.arrayElement(['Male', 'Female']),
             phoneNumber: faker.phone.number(),
             address: faker.address.streetAddress()
         }
-        debugger
-        await Student.create(fakeStudent)
-        print(`Inserted student with name ${fakeStudent.name}`)
-    })
+        fakeStudents.push(fakeStudent)
+    }
+    await Student.insertMany(fakeStudents)
 }
 
 export default {
