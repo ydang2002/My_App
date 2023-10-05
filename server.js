@@ -7,6 +7,7 @@ import checkToken from './authentication/auth.js'
 import {
     usersRouter,
     studentRouter,
+    routesRouter,
 } from './routes/index.js'
 
 const app = express()
@@ -16,6 +17,7 @@ const port = process.env.PORT ?? 3000
 // //routes
 app.use('/users', usersRouter)
 app.use('/students', studentRouter)
+app.use('/routes', routesRouter)
 
 app.get('/', (req, res) => {
     res.send('response from root router haha')
