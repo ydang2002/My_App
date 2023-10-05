@@ -12,6 +12,20 @@ const getAllRoutes = async () => {
     return filteredRoutes
 }
 
+const getRoutesProvince = async (origin, destination, originDate) => { // Thêm hàm này
+  let filteredRoutes = await Route.aggregate([
+      {
+          $match: {
+              "origin.nameProvinces": origin, // Lọc theo tên tỉnh xuất phát
+              "destination.nameProvinces": destination, // Lọc theo tên tỉnh đến
+              "trips.originDate": originDate // Lọc theo thời gian xuất phát
+          }
+      }
+  ])
+
+  return filteredRoutes
+}
+
 const insertRoutes = async ({
     id,
     origin,
@@ -45,4 +59,5 @@ const insertRoutes = async ({
   export default {
     getAllRoutes,
     insertRoutes,
+    getRoutesProvince,
   }

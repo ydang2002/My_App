@@ -12,6 +12,8 @@ const tripSchema = new Schema({
     id: { type: String },
     originTime: { type: String },
     destinationTime: { type: String },
+    originDate: { type: String },
+    destinationDate: { type: String },
     availableSeats: { type: Number },
     seats: [seatSchema],
 });

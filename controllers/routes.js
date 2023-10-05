@@ -17,6 +17,24 @@ async function getAllRoutes(req, res) {
     }
 }
 
+async function getRoutesProvince(req, res) { // Thêm hàm này
+    try {
+        let origin = req.params.origin // Lấy tham số origin từ req.params
+        let destination = req.params.destination // Lấy tham số destination từ req.params
+        let originDate = req.params.originDate // Lấy tham số originDate từ req.params
+
+        let filteredRoutes = await routesRepository.getRoutesProvince(origin, destination, originDate) // Gọi hàm getRoutesByParams từ repository
+        res.status(HttpStatusCode.OK).json({
+            message: 'get routes by params successfully',
+            data: filteredRoutes,
+        })
+    } catch (exception) {
+        res.status(HttpStatusCode.INTERNAL_SEVER_ERROR).json({
+            message: exception.message,
+        })
+    }
+}
+
 async function getRoutesById(req, res) {
 
 }
@@ -44,5 +62,6 @@ export default {
     getAllRoutes,
     getRoutesById, 
     updateRoutes,
-    insertRoutes
+    insertRoutes,
+    getRoutesProvince
 }

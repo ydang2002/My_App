@@ -6,7 +6,9 @@ import { routesController } from '../controllers/index.js'
 
 const router = express.Router()
 
-router.get('/', routesController.getAllRoutes)
+router.get('/f', routesController.getAllRoutes)
+
+router.get('/:origin/:destination/:originDate', routesController.getRoutesProvince)
 
 router.get('/:id', routesController.getRoutesById)
 
