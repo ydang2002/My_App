@@ -4,7 +4,17 @@ import HttpStatusCode from '../exceptions/HttpStatusCode.js'
 import { routesRepository } from '../repositories/index.js'
 
 async function getAllRoutes(req, res) {
-    res.send("Get all routes")
+    try {
+        let filteredRoutes = await routesRepository.getAllRoutes()
+        res.status(HttpStatusCode.OK).json({
+            message: 'get routes successfully',
+            data: filteredRoutes,
+        })
+    } catch (exception) {
+        res.status(HttpStatusCode.INTERNAL_SEVER_ERROR).json({
+            message: exception.message,
+        })
+    }
 }
 
 async function getRoutesById(req, res) {

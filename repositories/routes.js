@@ -1,8 +1,15 @@
 import { Route } from "../models/index.js"
-const getAllRoutes = async ({
 
-}) => {
-    console.log('get all routes')
+const getAllRoutes = async () => {
+    let filteredRoutes = await Route.aggregate([
+      {
+        $match: {
+        
+        },
+      }
+    ])
+
+    return filteredRoutes
 }
 
 const insertRoutes = async ({
