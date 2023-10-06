@@ -15,7 +15,7 @@ const tripSchema = new Schema({
     originDate: { type: String },
     destinationDate: { type: String },
     availableSeats: { type: Number },
-    seats: [seatSchema],
+    seats: [seatSchema]
 });
 
 // Province Schema
