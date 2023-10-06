@@ -8,6 +8,7 @@ import {
     usersRouter,
     studentRouter,
     routesRouter,
+    bookingSeatRouter,
 } from './routes/index.js'
 
 const app = express()
@@ -18,6 +19,7 @@ const port = process.env.PORT ?? 3000
 app.use('/users', usersRouter)
 app.use('/students', studentRouter)
 app.use('/routes', routesRouter)
+app.use('/bookingSeat', bookingSeatRouter)
 
 app.get('/', (req, res) => {
     res.send('response from root router haha')
