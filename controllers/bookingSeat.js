@@ -18,6 +18,35 @@ async function insertBookingSeat(req, res) {
     }
 }
 
+async function getBookingSeatByCustomerId(req, res) {
+    const customerId = req.params.customerId
+    try {
+        const bookingSeats = await bookingSeatRepository.getBookingSeatByCustomerId(customerId)
+        res.status(HttpStatusCode.OK).json({
+            message: 'Get detail booking seat successfully',
+            data: bookingSeats,
+        })
+    } catch (exception) {
+        res.status(HttpStatusCode.INTERNAL_SEVER_ERROR).json({
+            message: exception.message,
+        })
+    }
+
+    // try {
+    //     let customerId = req.params.customerId
+    //     let filteredRoutes = await bookingSeatRepository.getBookingSeatByCustomerId(customerId) 
+    //     res.status(HttpStatusCode.OK).json({
+    //         message: 'get booking seat successfully',
+    //         data: filteredRoutes,
+    //     })
+    // } catch (exception) {
+    //     res.status(HttpStatusCode.INTERNAL_SEVER_ERROR).json({
+    //         message: exception.message,
+    //     })
+    // }
+}
+
 export default {
     insertBookingSeat,
+    getBookingSeatByCustomerId,
 }

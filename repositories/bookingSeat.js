@@ -1,4 +1,5 @@
 import { BookingSeat } from "../models/index.js"
+import Exception from "../exceptions/Exception.js"
 
 const insertBookingSeat = async ({
     _id,
@@ -28,6 +29,24 @@ const insertBookingSeat = async ({
     }
   };
 
+  const getBookingSeatByCustomerId = async (customerId) => {
+    const bookingSeats = await BookingSeat.find({ customerId: customerId });
+    if(!bookingSeats) {
+      throw new Exception('Cannot find booking seat with id ' + customerId)
+    }
+    return bookingSeats
+
+  //   let filteredRoutes = await BookingSeat.aggregate([
+  //     {
+  //       $match: {
+  //         "cutomerId": cutomerId
+  //       }
+  //     }
+  //   ])
+  //   return filteredRoutes;
+  }
+
   export default {
     insertBookingSeat,
+    getBookingSeatByCustomerId,
   }
