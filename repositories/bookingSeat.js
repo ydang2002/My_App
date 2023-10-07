@@ -46,7 +46,16 @@ const insertBookingSeat = async ({
   //   return filteredRoutes;
   }
 
+  const getBookingSeatId = async (bookingSeatId) => {
+    const bookingSeats = await BookingSeat.find({ _id: bookingSeatId });
+    if(!bookingSeats) {
+      throw new Exception('Cannot find booking seat with id ' + bookingSeatId)
+    }
+    return bookingSeats
+  }
+
   export default {
     insertBookingSeat,
     getBookingSeatByCustomerId,
+    getBookingSeatId,
   }
