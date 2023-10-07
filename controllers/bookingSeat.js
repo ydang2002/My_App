@@ -46,7 +46,23 @@ async function getBookingSeatByCustomerId(req, res) {
     // }
 }
 
+async function getBookingSeatId(req, res) {
+    const bookingSeatId = req.params._id
+    try {
+        const bookingSeats = await bookingSeatRepository.getBookingSeatId(bookingSeatId)
+        res.status(HttpStatusCode.OK).json({
+            message: 'Get detail booking seat successfully',
+            data: bookingSeats,
+        })
+    } catch (exception) {
+        res.status(HttpStatusCode.INTERNAL_SEVER_ERROR).json({
+            message: exception.message,
+        })
+    }
+}
+
 export default {
     insertBookingSeat,
     getBookingSeatByCustomerId,
+    getBookingSeatId,
 }
