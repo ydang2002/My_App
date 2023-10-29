@@ -1,4 +1,4 @@
-import {body, validationResult } from 'express-validator'
+import { body, validationResult } from 'express-validator'
 import { MAX_RECORDS } from '../Global/constants.js'
 import HttpStatusCode from '../exceptions/HttpStatusCode.js'
 import { routesRepository } from '../repositories/index.js'
@@ -40,6 +40,27 @@ async function getRoutesById(req, res) {
 }
 
 async function updateRoutes(req, res) {
+    const {
+        id,
+        origin,
+        destination,
+        distance,
+        duration,
+        price,
+        trips,
+        carriers
+    } = req.body
+    try {
+        const route = await routesRepository.updateRoutes(req.body)
+        res.status(HttpStatusCode.OK).json({
+            message: 'update route successfully',
+            data: route,
+        })
+    } catch (exception) {
+        res.status(HttpStatusCode.INTERNAL_SEVER_ERROR).json({
+            message: exception.message,
+        })
+    }
 
 }
 
@@ -60,7 +81,7 @@ async function insertRoutes(req, res) {
 
 export default {
     getAllRoutes,
-    getRoutesById, 
+    getRoutesById,
     updateRoutes,
     insertRoutes,
     getRoutesProvince
