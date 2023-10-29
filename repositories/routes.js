@@ -56,8 +56,31 @@ const insertRoutes = async ({
     // }
   };
 
+  const updateRoutes = async ({
+    id,
+    origin,
+    destination,
+    distance,
+    duration,
+    price,
+    trips,
+    carriers
+  }) => {
+      const route = await Route.findById(id)
+      route.origin = origin ?? route.origin
+      route.destination = destination ?? route.destination
+      route.distance = distance ?? route.distance
+      route.duration = duration ?? route.duration
+      route.price = price ?? route.price
+      route.trips = trips ?? route.trips
+      route.carriers = carriers ?? route.carriers
+      await route.save()
+      return route;
+  };
+
   export default {
     getAllRoutes,
     insertRoutes,
     getRoutesProvince,
+    updateRoutes
   }
