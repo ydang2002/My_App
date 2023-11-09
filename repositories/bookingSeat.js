@@ -3,6 +3,7 @@ import Exception from "../exceptions/Exception.js"
 
 const insertBookingSeat = async ({
     // _id,
+    id,
     customerId,
     totalSeats,
     totalPrice,
@@ -13,6 +14,7 @@ const insertBookingSeat = async ({
     try {
       const bookingSeat = await BookingSeat.create({
         // _id,
+        id,
         customerId,
         totalSeats,
         totalPrice,
