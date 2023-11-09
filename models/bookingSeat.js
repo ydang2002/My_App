@@ -61,7 +61,8 @@ const bookingSeatSchema = new Schema({
     customerId: { type: String },
     totalSeats: { type: Number },
     totalPrice: { type: Number },
-    routes: [{ type: routeSchema }],
+    // routes: [{ type: routeSchema }],
+    routes: { type: routeSchema },
     info: { type: info },
     test: { type: test },
     bookingSeatDetails: [{ type: detailSchema }]
