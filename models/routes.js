@@ -40,7 +40,8 @@ const routeSchema = new Schema({
     distance: { type: String },
     duration: { type: String },
     price: { type: Number },
-    trips: [tripSchema],
+    // trips: [tripSchema],
+    trips: {tripSchema},
     carriers: [{ type: carrierSchema }],
 });
 
